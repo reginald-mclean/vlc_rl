@@ -11,6 +11,12 @@ Minttu Alakuijala, Reginald McLean, Isaac Woungang, Nariman Farsad, Samuel Kaski
 
 [VLC Experiments](#vlc-experiments)
 
+[License](#license)
+
+[Citation](#citation)
+
+[Acknowledgement](#acknowledgement)
+
 ## Installation
 placeholder
 
