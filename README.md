@@ -62,6 +62,7 @@ The source code in this repository is licensed under the **X** License.
 ## Citation
 If you find this repository or paper useful for your research, please cite
 
+```
 @article{alakuijala2024videolanguage,
       title={Video-Language Critic: Transferable Reward Functions for Language-Conditioned Robotics}, 
       author={Minttu Alakuijala and Reginald McLean and Isaac Woungang and Nariman Farsad and Samuel Kaski and Pekka Marttinen and Kai Yuan},
@@ -70,6 +71,6 @@ If you find this repository or paper useful for your research, please cite
       archivePrefix={arXiv},
       primaryClass={cs.RO}
 }
-
+```
 ## Acknowledgement
 This implementation is based off [CleanRL](https://github.com/vwxyzjn/cleanrl)
