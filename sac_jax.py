@@ -26,9 +26,8 @@ from cleanrl_utils.evals.metaworld_jax_eval import evaluation
 from flax.training import orbax_utils
 from flax.training.train_state import TrainState
 from jax.typing import ArrayLike
-from cleanrl_utils.env_setup_metaworld import make_envs, make_eval_envs
 from torch.utils.tensorboard import SummaryWriter
-from video_language_critic.reward import RewardCalculator
+from clip4clip.reward import RewardCalculator
 import torch
 import pickle
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize

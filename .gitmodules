@@ -1,0 +1,6 @@
+[submodule "Metaworld"]
+	path = Metaworld
+	url = git@github.com:Farama-Foundation/Metaworld.git
+[submodule "Gymnasium"]
+	path = Gymnasium
+	url = git@github.com:reginald-mclean/Gymnasium.git
