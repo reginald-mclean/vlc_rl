@@ -1,6 +1,6 @@
 # Video-Language Critic: Transferable Reward Functions for Language-Conditioned Robotics 
 
-[Minttu Alakuijala](#)<sup>1</sup>, [Reginald McLean](https://www.reggiemclean.ca)<sup>2</sup>, [Isaac Woungang](http://cs.torontomu.ca/~iwoungan)<sup>2</sup>, [Nariman Farsad](http://narimanfarsad.com/)<sup>2</sup>, [Samuel Kaski](#)<sup>1,3</sup>, [Pekka Marttinen](#)<sup>1</sup>, [Kai Yuan](#) <sup>4</sup>
+[Minttu Alakuijala](#)<sup>1</sup>, [Reginald McLean](https://www.reggiemclean.ca)<sup>2</sup>, [Isaac Woungang](http://cs.torontomu.ca/~iwoungan)<sup>2</sup>, [Nariman Farsad](http://narimanfarsad.com/)<sup>2</sup>, [Samuel Kaski](#)<sup>1,3</sup>, [Pekka Marttinen](#)<sup>1</sup>, [Kai Yuan](https://www.linkedin.com/in/kai-yuan/) <sup>4</sup>
 
 <sup>1</sup>Department of Computer Science, Aalto University, <sup>2</sup>Department of Computer Science, Toronto Metropolitan University, <sup>3</sup>Department of Computer Science, University of Manchester, <sup>4</sup>Intel Corporation
 
