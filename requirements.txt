@@ -27,7 +27,6 @@ gitdb==4.0.11
 GitPython==3.1.43
 glfw==2.7.0
 grpcio==1.64.0
-gymnasium==0.29.1
 idna==3.7
 imageio==2.34.1
 importlib_resources==6.4.0
