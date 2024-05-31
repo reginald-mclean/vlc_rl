@@ -20,9 +20,24 @@
 [Acknowledgement](#acknowledgement)
 
 ## Installation
-placeholder
+If you do not have Video Language Critic (VLC) installed, please install this [repo]() first.
+
+We do recommend creating an environment via [miniconda](https://docs.anaconda.com/free/miniconda/) as it can handle the requirements for headless rendering.
+
+After cloning this repo, in the same environment that VLC is installed in:
+
+```
+cd VLC_RL/Metaworld;
+pip install -e .;
+cd ../Gymnasium;
+pip install -e .;
+cd ../;
+pip install -r requirements.txt;
+pip install 'jax[cuda12]==0.4.23'
+```
 
 ## VLC Experiments
+
 ### Replication
 
 ### Rendering
@@ -34,5 +49,14 @@ The source code in this repository is licensed under the **X** License.
 ## Citation
 If you find this repository or paper useful for your research, please cite
 
+@article{alakuijala2024videolanguage,
+      title={Video-Language Critic: Transferable Reward Functions for Language-Conditioned Robotics}, 
+      author={Minttu Alakuijala and Reginald McLean and Isaac Woungang and Nariman Farsad and Samuel Kaski and Pekka Marttinen and Kai Yuan},
+      year={2024},
+      eprint={2405.19988},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}
+
 ## Acknowledgement
-This implementation is based off of [CleanRL](https://github.com/vwxyzjn/cleanrl)
+This implementation is based off [CleanRL](https://github.com/vwxyzjn/cleanrl)
