@@ -50,9 +50,9 @@ then edit paths.py with your favourite text editor, replacing the paths with you
 The ```REWARD_CKPT_DIR``` should point to a folder that contains the VLC checkpoint files, also from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing).
 ```EXP_DIR``` will be the output of the experiment. 
 
-All needed data can be downloaded with the following commands:
-MW_DATA: ```gdown 1u0aNE2pnsWTC669tVwZ0zv-5Zk42-S-R```
-REWARD_CKPT: ```gdown 1hWpQO7nWIM5IhY4fRI0LxxABTmQ7LIvo```
+All needed data can be downloaded with the following commands:  <br>
+MW_DATA: ```gdown 1u0aNE2pnsWTC669tVwZ0zv-5Zk42-S-R```  <br>
+REWARD_CKPT: ```gdown 1hWpQO7nWIM5IhY4fRI0LxxABTmQ7LIvo```  <br>
 
 ## VLC Experiments
 
