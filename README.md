@@ -46,18 +46,20 @@ Next we will need to setup the paths.py file
 cp paths_template.py paths.py
 ```
 then edit paths.py with your favourite text editor, replacing the paths with your local paths.
-
-
+```MW_DATA_DIR``` should point to the data from VLC. This can be downloaded from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing).
+The ```REWARD_CKPT_DIR``` should point to a folder that contains the VLC checkpoint files, also from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing).
+```EXP_DIR``` will be the output of the experiment. 
 
 ## VLC Experiments
 
 ### Replication
 ```
-python cleanrl/mtmhsac_jax.py --env-id door-unlock-v2 --exp-name mtmhsac_jax --track --save-model --seed 12345 --reward-normalization-gymnasium --reward-normalization-offset --predict-for-partial-videos --stretch-partial-videos --sparse-reward-weight=50 --vlm-reward-weight=1 --evaluation-frequency 20000 --c4c-ckpt ckpt_mw50_retrank33_tigt_negonly_a_rf_1__pytorch_model.bin.20
+python sac_jax.py --env-id door-unlock-v2 --exp-name mtmhsac_jax --track --save-model --seed 12345 --reward-normalization-gymnasium --reward-normalization-offset --predict-for-partial-videos --stretch-partial-videos --sparse-reward-weight=50 --vlm-reward-weight=1 --evaluation-frequency 20000 --vlc-ckpt ckpt_mw50_retrank33_tigt_negonly_a_rf_1__pytorch_model.bin.20
 ```
 
 ### Rendering
-placeholder
+This repo currently uses [EGL](https://www.khronos.org/egl) which should be supported on current NVIDIA GPU's. Untested on AMD/Intel GPUs. 
+By using EGL, there should be no extra changes that need to be made. Alternative rendering methods such as osmesa can also be used.
 
 ## License
 The source code in this repository is licensed under the **X** License.
@@ -76,4 +78,4 @@ If you find this repository or paper useful for your research, please cite
 }
 ```
 ## Acknowledgement
-This implementation is based off [CleanRL](https://github.com/vwxyzjn/cleanrl)
+This implementation is based off [CleanRL](https://github.com/vwxyzjn/cleanrl). Thanks to [Evangelos](https://github.com/evangelos-ch) and [Frank](https://github.com/frankroeder) for the implementation! 
