@@ -82,4 +82,4 @@ If you find this repository or paper useful for your research, please cite
 }
 ```
 ## Acknowledgement
-This implementation is based off [CleanRL](https://github.com/vwxyzjn/cleanrl). Thanks to [Evangelos](https://github.com/evangelos-ch) and [Frank](https://github.com/frankroeder) for the implementation! 
+This implementation is based off [CleanRL](https://github.com/vwxyzjn/cleanrl). Thanks to [Evangelos](https://github.com/evangelos-ch) and [Frank](https://github.com/frankroeder) for the base implementation! 
