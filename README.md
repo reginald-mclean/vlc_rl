@@ -20,7 +20,7 @@
 [Acknowledgement](#acknowledgement)
 
 ## Installation
-If you do not have Video Language Critic (VLC) installed, please install this [repo]() first.
+If you do not have Video Language Critic (VLC) installed, please install this [repo](https://github.com/minttusofia/video_language_critic) first.
 
 We do recommend creating an environment via [miniconda](https://docs.anaconda.com/free/miniconda/) as it can handle the requirements for headless rendering.
 
