@@ -52,7 +52,7 @@ then edit paths.py with your favourite text editor, replacing the paths with you
 ## VLC Experiments
 
 ### Replication
-
+```python cleanrl/mtmhsac_jax.py --env-id door-unlock-v2 --exp-name mtmhsac_jax --track --save-model --seed 12345 --reward-normalization-gymnasium --reward-normalization-offset --predict-for-partial-videos --stretch-partial-videos --sparse-reward-weight=50 --vlm-reward-weight=1 --evaluation-frequency 20000 --c4c-ckpt ckpt_mw50_retrank33_tigt_negonly_a_rf_1__pytorch_model.bin.20 ```
 ### Rendering
 placeholder
 
