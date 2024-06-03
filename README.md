@@ -46,8 +46,8 @@ Next we will need to setup the paths.py file
 cp paths_template.py paths.py
 ```
 then edit paths.py with your favourite text editor, replacing the paths with your local paths.
-```MW_DATA_DIR``` should point to the data from VLC. This can be downloaded from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing).
-The ```REWARD_CKPT_DIR``` should point to a folder that contains the VLC checkpoint files, also from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing).
+```MW_DATA_DIR``` should point to the data from VLC. The data can be downloaded from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing), specifically the data.zip file.
+The ```REWARD_CKPT_DIR``` should point to a folder that contains the VLC checkpoint files, also from this [Google Drive](https://drive.google.com/drive/folders/1DBgMbMyDjTmFR8dOuzllDeRUqJZW9Sex?usp=sharing) in the VLC Checkpoints folder.
 ```EXP_DIR``` will be the output of the experiment. 
 
 All needed data can be downloaded with the following commands:  <br>
