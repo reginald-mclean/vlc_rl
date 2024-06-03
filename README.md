@@ -25,20 +25,20 @@ If you do not have Video Language Critic (VLC) installed, please install this [r
 We do recommend creating an environment via [miniconda](https://docs.anaconda.com/free/miniconda/) as it can handle the requirements for headless rendering.
 
 ```
-conda create -n VLC_RL python=3.10 pip
+conda create -n vlc_rl python=3.10 pip
 ```
 
 After cloning this repo, in the same environment that VLC is installed in:
 
 ```
-cd VLC_RL;
-git submodule update --init --recursive;
-cd Metaworld;
-pip install -e .;
-cd ../Gymnasium;
-pip install -e .;
-cd ../;
-pip install -r requirements.txt;
+cd VLC_RL
+git submodule update --init --recursive
+cd Metaworld
+pip install -e .
+cd ../Gymnasium
+pip install -e .
+cd ../
+pip install -r requirements.txt
 pip install 'jax[cuda12]==0.4.23'
 ```
 Next we will need to setup the paths.py file
