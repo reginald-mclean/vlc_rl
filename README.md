@@ -31,7 +31,7 @@ conda create -n vlc_rl python=3.10 pip
 After cloning this repo, in the same environment that VLC is installed in:
 
 ```
-cd VLC_RL
+cd vlc_rl
 git submodule update --init --recursive
 cd Metaworld
 pip install -e .
