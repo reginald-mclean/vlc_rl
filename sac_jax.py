@@ -1,4 +1,6 @@
 # ruff: noqa: E402
+import multiprocessing as mp
+
 from paths import *
 import argparse
 import io
@@ -21,13 +23,13 @@ import numpy as np
 import numpy.typing as npt
 import optax  # type: ignore
 import orbax.checkpoint  # type: ignore
-from cleanrl_utils.buffers_metaworld import MultiTaskReplayBuffer
+from cleanrl_utils.buffers_metaworld import ReplayBuffer
 from cleanrl_utils.evals.metaworld_jax_eval import evaluation
 from flax.training import orbax_utils
 from flax.training.train_state import TrainState
 from jax.typing import ArrayLike
 from torch.utils.tensorboard import SummaryWriter
-from clip4clip.reward import RewardCalculator
+from video_language_critic.reward import RewardCalculator
 import torch
 import pickle
 from torchvision.transforms import Compose, Resize, CenterCrop, ToTensor, Normalize
@@ -39,7 +41,7 @@ from cleanrl_utils.wrappers import metaworld_wrappers
 
 def load_vlc_args(vlc_ckpt):
     init_model_path = os.path.join(REWARD_CKPT_DIR, vlc_ckpt)
-    vlc_args_path = os.path.join(init_model_path + '_eval.pkl')
+    vlc_args_path = os.path.join(init_model_path + '_config.pkl')
     with open(vlc_args_path, 'rb') as f:
         vlc_args = pickle.load(f)['args']
     vlc_args.init_model = init_model_path
@@ -55,17 +57,17 @@ def parse_args():
         help="seed of the experiment")
     parser.add_argument("--track", type=lambda x: bool(strtobool(x)), default=False, nargs="?", const=True,
         help="if toggled, this experiment will be tracked with Weights and Biases")
-    parser.add_argument("--wandb-project-name", type=str, default="MTSAC-State-VLM-Reward",
+    parser.add_argument("--wandb-project-name", type=str, default=None,
         help="the wandb's project name")
-    parser.add_argument("--wandb-entity", type=str, default='reggies-phd-research',
+    parser.add_argument("--wandb-entity", type=str, default=None,
         help="the entity (team) of wandb's project")
     parser.add_argument("--save-model", type=lambda x: bool(strtobool(x)), default=False, nargs="?", const=True,
         help="whether to save model checkpoints")
 
     # Algorithm specific arguments
-    parser.add_argument("--env-id", type=str, default="MT10", help="the id of the environment")
+    parser.add_argument("--env-id", type=str, default="reach-v2", help="the name of the environment")
     parser.add_argument("--total-timesteps", type=int, default=int(5e6),
-        help="total timesteps of the experiments *across all tasks*, the timesteps per task are this value / num_tasks")
+        help="total timesteps of the experiment")
     parser.add_argument("--max-episode-steps", type=int, default=500,
         help="maximum number of timesteps in one episode during training")
     parser.add_argument("--buffer-size", type=int, default=int(1e6),
@@ -539,32 +541,11 @@ def update_mean_var_count_from_moments(
 
 # Training loop
 if __name__ == "__main__":
+    mp.set_start_method('spawn')
     args, vlc_args = parse_args()
-    run_name = f"{args.env_id}_{args.exp_name}_rbfix"
-    if args.reward_normalization_offset:
-        run_name += f"_rnorm_offset"
-    if args.reward_normalization_gymnasium:
-        run_name += f"_rnorm_gym"
-    if args.reward_normalization_constant:
-        run_name += f"_rnorm_constant_{args.reward_normalization_constant_value}"
-    if args.env_reward_weight != 0:
-        run_name += f"_renv_{args.env_reward_weight}"
-    if args.sparse_reward_weight != 0:
-        run_name += f"_rsparse_{args.sparse_reward_weight}"
-    if args.vlm_reward_weight != 1:
-        run_name += f"_rvlm_{args.vlm_reward_weight}"
-    if args.vlm_reward_weight != 0 and args.reward_episode_end_only:
-        run_name += f"_endonly"
-    if args.vlm_reward_weight != 0:
-        run_name += f'_ckpt_{args.vlc_ckpt.replace("/", "__")}'
+    run_name = f"{args.env_id}_{args.exp_name}"
+
     if args.track:
-        import wandb
-        if 'SLURM_JOB_ID' in os.environ:
-            args.slurm_job_id = os.environ["SLURM_JOB_ID"]
-        else:
-            print('slurm job id not found')
-        if 'SLURM_ARRAY_JOB_ID' in os.environ and 'SLURM_ARRAY_TASK_ID' in os.environ:
-            args.slurm_array_job_id = f'{os.environ["SLURM_ARRAY_JOB_ID"]}_{os.environ["SLURM_ARRAY_TASK_ID"]}'
         run = wandb.init(
             project=args.wandb_project_name,
             entity=args.wandb_entity,
@@ -611,14 +592,13 @@ if __name__ == "__main__":
         args.num_envs = 50
     else:
         benchmark = metaworld.MT1(args.env_id, seed=args.seed)
-        eval_benchmark = metaworld.MT1(args.env_id, seed=args.seed)
         args.num_envs = 1
 
     envs = make_envs(
         benchmark, args.seed, args.max_episode_steps
     )
     eval_envs = make_eval_envs(
-        eval_benchmark, args.seed, args.max_episode_steps
+        benchmark, args.seed, args.max_episode_steps
     )
 
     NUM_TASKS = len(benchmark.train_classes)
@@ -628,7 +608,7 @@ if __name__ == "__main__":
     ), "only continuous action space is supported"
 
     # agent setup
-    rb = MultiTaskReplayBuffer(
+    rb = ReplayBuffer(
         total_capacity=args.buffer_size,
         envs=envs,
         use_torch=False,
@@ -697,7 +677,6 @@ if __name__ == "__main__":
 
         # TRY NOT TO MODIFY: execute the game and log data.
         next_obs, og_rewards, terminations, truncations, infos = envs.step(actions)
-
         if args.vlm_reward_weight != 0:
             current_frames = envs.call('render')
 
