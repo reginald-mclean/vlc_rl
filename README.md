@@ -57,8 +57,9 @@ REWARD_CKPT: ```gdown 1hWpQO7nWIM5IhY4fRI0LxxABTmQ7LIvo```  <br>
 ## VLC Experiments
 
 ### Replication
+To run a VLC experiment, use the following command replacing ENV_NAME with the environment name and FILE_NAME with the VLC checkpoint you would like to use.
 ```
-python sac_jax.py --env-id door-unlock-v2 --exp-name mtmhsac_jax --track --save-model --seed 12345 --reward-normalization-gymnasium --reward-normalization-offset --predict-for-partial-videos --stretch-partial-videos --sparse-reward-weight=50 --vlm-reward-weight=1 --evaluation-frequency 20000 --vlc-ckpt ckpt_mw50_retrank33_tigt_negonly_a_rf_1__pytorch_model.bin.20
+python sac_jax.py --env-id ENV_NAME --seed 12345 --reward-normalization-gymnasium --reward-normalization-offset --predict-for-partial-videos --stretch-partial-videos --sparse-reward-weight=50 --vlm-reward-weight=1 --evaluation-frequency 20000 --vlc-ckpt FILE_NAME
 ```
 
 ### Rendering
