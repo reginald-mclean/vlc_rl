@@ -64,7 +64,11 @@ python sac_jax.py --env-id ENV_NAME --seed 12345 --reward-normalization-gymnasiu
 
 ### Rendering
 This repo currently uses [EGL](https://www.khronos.org/egl) which should be supported on current NVIDIA GPU's. Untested on AMD/Intel GPUs. 
-By using EGL, there should be no extra changes that need to be made. Alternative rendering methods such as osmesa can also be used.
+To enable Mujoco to use EGL, run the following commands in a terminal on a headless server or add them to your .bashrc file:
+```
+export MUJOCO_GL=egl
+export PYOPENGL_PLATFORM=egl
+```
 
 ## License
 The source code in this repository is licensed under the **X** License.
