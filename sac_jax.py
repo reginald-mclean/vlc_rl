@@ -546,6 +546,7 @@ if __name__ == "__main__":
     run_name = f"{args.env_id}_{args.exp_name}"
 
     if args.track:
+        import wandb
         run = wandb.init(
             project=args.wandb_project_name,
             entity=args.wandb_entity,
